@@ -1,0 +1,11 @@
+:root {
+    display: grid;
+    grid-template-areas: 
+        "navbar-left navbar-right"
+        "coverage-modals" "coverage-info"
+        "footer footer";
+}
+
+.navbar {
+
+}
