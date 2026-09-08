@@ -1,11 +1,79 @@
-:root {
-    display: grid;
-    grid-template-areas: 
-        "navbar-left navbar-right"
-        "coverage-modals" "coverage-info"
-        "footer footer";
+.navbar {
+    padding: 0%;
 }
 
-.navbar {
+.navbar-brand {
+    padding-left: 20px;
+}
 
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+#viewclaims-navbar {
+    display: flex;
+    background-color: #BEF600;
+    padding: 0%;
+}
+
+#fdm-logo {
+    width: 200px;
+}
+
+#navbar-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 60px;
+    font-size: 28px;
+    column-gap: 40px;
+}
+
+#viewclaims-greeting {
+    display: flex;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewclaims-mainview {
+    display: flex;
+    height: 70vh;
+}
+
+#viewclaims-modallist, #viewclaims-description {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewclaims-modallist {
+    flex-direction: column;
+}
+
+#viewclaims-description {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 50px;
+}
+
+#insurance-modal {
+    background-color: green;
+    border-style: none;
+    min-width: 500px;
+    margin: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#insurance-modal:hover {
+    background-color: darkolivegreen;
+}
+
+#insurance-modal:active {
+    background-color: darkgreen;
 }
