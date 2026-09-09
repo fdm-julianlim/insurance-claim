@@ -1,9 +1,16 @@
 import './App.css'
-import NavigationBar from './components/NavigationBar'
+import ClaimSubmitView from './components/ClaimSubmitView'
+import CoverageView from './components/CoverageView'
+import { Route, Routes } from "react-router-dom"
 
 function App() {
   return (
-    <NavigationBar></NavigationBar>
+    <div className='app'>
+      <Routes>
+        <Route path="/" element={<CoverageView/>}></Route>
+        <Route path="/submit-claim" element={<ClaimSubmitView/>}></Route>
+      </Routes>
+    </div>
   )
 }
 

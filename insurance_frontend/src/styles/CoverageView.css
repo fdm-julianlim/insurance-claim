@@ -1,0 +1,51 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+#viewclaims-greeting {
+    display: flex;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewclaims-mainview {
+    display: flex;
+    height: 70vh;
+}
+
+#viewclaims-modallist, #viewclaims-description {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewclaims-modallist {
+    flex-direction: column;
+}
+
+#viewclaims-description {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 50px;
+}
+
+.insurance-modal {
+    background-color: green;
+    border-style: none;
+    min-width: 500px;
+    margin: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.insurance-modal:hover {
+    background-color: darkolivegreen;
+}
+
+.insurance-modal:active {
+    background-color: purple;
+}
