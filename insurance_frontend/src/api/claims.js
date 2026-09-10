@@ -1,10 +1,14 @@
 const API_BASE = "/api"
-const CLAIMANT_ID = 1
 
 async function request(url, options = {}) {
+  const token = sessionStorage.getItem("insurance_token")
   const response = await fetch(
     `${API_BASE}${url}`, {
-    headers: {"Content-Type": "application/json"}, ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? {Authorization: `Bearer ${token}`} : {}),
+      ...options.headers,
+    }, ...options,
   })
 
   if (!response.ok) {
@@ -15,15 +19,15 @@ async function request(url, options = {}) {
 }
 
 export function getPolicies() {
-  return request(`/claimants/${CLAIMANT_ID}/policies`)
+  return request("/me/policies")
 }
 
 export function getClaimHistory() {
-  return request(`/claimants/${CLAIMANT_ID}/claims`)
+  return request("/me/claims")
 }
 
 export function submitClaim(claim) {
-  return request(`/claimants/${CLAIMANT_ID}/claims`, {
+  return request("/me/claims", {
     method: "POST",
     body: JSON.stringify(claim),
   })

@@ -1,0 +1,62 @@
+:root {
+    --login-ink: #17251f;
+    --login-muted: #62716a;
+    --login-line: #dbe5df;
+    --login-accent: #1f6f54;
+}
+
+#login-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem 1rem;
+    color: var(--login-ink);
+    background: radial-gradient(circle at 85% 12%, #e6f1c9 0, transparent 28rem),
+        linear-gradient(135deg, #f7faf6 0%, #eef4ed 100%);
+}
+
+#login-panel {
+    width: min(100%, 31rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4rem);
+    border: 1px solid var(--login-line);
+    border-radius: 8px;
+    background: rgb(255 255 255 / 92%);
+    box-shadow: 0 18px 45px rgb(38 65 48 / 10%);
+}
+
+.login-eyebrow {
+    margin: 0 0 0.5rem;
+    color: var(--login-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+#login-panel h1 {
+    margin: 0;
+    font-size: clamp(2rem, 7vw, 3.25rem);
+    font-weight: 700;
+}
+
+.login-intro {
+    margin: 0.75rem 0 2rem;
+    color: var(--login-muted);
+    line-height: 1.5;
+}
+
+#login-panel .form-label {
+    font-weight: 600;
+}
+
+#login-panel .form-control:focus {
+    border-color: var(--login-accent);
+    box-shadow: 0 0 0 0.2rem rgb(31 111 84 / 15%);
+}
+
+#login-panel .btn-primary {
+    width: 100%;
+    border-color: var(--login-accent);
+    background: var(--login-accent);
+}

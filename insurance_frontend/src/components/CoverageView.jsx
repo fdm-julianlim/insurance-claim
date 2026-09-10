@@ -8,10 +8,12 @@ import Col from "react-bootstrap/Col"
 import Button from "react-bootstrap/Button"
 
 import { getClaimHistory, getPolicies } from "../api/claims.js"
+import { getStoredUser } from "../api/auth.js"
 import Policies from "../constants/Policies.jsx"
 import NavigationBar from "./NavigationBar.jsx"
 
 const CoverageView = () => {
+    const user = getStoredUser()
     const [policies, setPolicies] = useState([])
     const [claims, setClaims] = useState([])
     const [selectedPolicy, setSelectedPolicy] = useState(null)
@@ -59,7 +61,7 @@ const CoverageView = () => {
                     <div id="viewclaims-greeting">
                         <div>
                             <p className="coverage-eyebrow">Policy overview</p>
-                            <h1>Welcome, Policyholder Name.</h1>
+                            <h1>Welcome, {user?.name ?? "Policyholder"}.</h1>
                             <p className="coverage-intro">Review your active protection and policy limits.</p>
                         </div>
                     </div>
