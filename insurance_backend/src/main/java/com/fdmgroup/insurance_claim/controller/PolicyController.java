@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,7 +14,6 @@ import com.fdmgroup.insurance_claim.service.PolicyService;
 import com.fdmgroup.insurance_claim.service.ClaimantUserService;
 
 @RestController
-@RequestMapping("/claimants")
 public class PolicyController {
     private final PolicyService policyService;
     private final ClaimantUserService claimantUserService;
@@ -25,7 +23,7 @@ public class PolicyController {
         this.claimantUserService = claimantUserService;
     }
 
-    @GetMapping("/{claimantId}/policies")
+    @GetMapping("/claimants/{claimantId}/policies")
     public List<PolicyResponse> getPolicies(@PathVariable Long claimantId,
             Authentication authentication) {
         ensureCurrentUser(claimantId, authentication);
