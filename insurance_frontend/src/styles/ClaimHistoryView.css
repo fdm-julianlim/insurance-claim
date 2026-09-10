@@ -1,0 +1,47 @@
+#claim-history-view {
+    min-height: 70vh;
+    padding: 2rem 1rem 4rem;
+}
+
+#claim-history-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+#claim-history-header p {
+    margin-bottom: 0;
+}
+
+.claim-status {
+    display: inline-block;
+    min-width: 90px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.claim-status-pending {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.claim-status-approved {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.claim-status-rejected {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+@media (max-width: 700px) {
+    #claim-history-header {
+        flex-direction: column;
+    }
+}

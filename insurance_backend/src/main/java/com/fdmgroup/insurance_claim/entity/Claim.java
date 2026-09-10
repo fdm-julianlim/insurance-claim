@@ -1,8 +1,11 @@
 package com.fdmgroup.insurance_claim.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,11 +19,15 @@ public class Claim {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long claimId;
 
-    private String policyName;
-    private String claimantName;
+    @ManyToOne
+    private Policy policy;
+
     private LocalDate claimDate;
-    private String claimAmount;
-    private String claimStatus;
+    private BigDecimal claimAmount;
+    private String description;
+    
+    @Enumerated (EnumType.STRING)
+    private ClaimStatus status = ClaimStatus.PENDING;
 
     @ManyToOne
     private Claimant claimant;
@@ -28,13 +35,14 @@ public class Claim {
     public Claim() {
     }
 
-    public Claim(String policyName, String claimantName, LocalDate claimDate,
-         String claimAmount, String claimStatus) {
-        this.policyName = policyName;
-        this.claimantName = claimantName;
+    public Claim(Policy policy, LocalDate claimDate, BigDecimal claimAmount, 
+        String description, ClaimStatus status, Claimant claimant) {
+        this.policy = policy;
         this.claimDate = claimDate;
         this.claimAmount = claimAmount;
-        this.claimStatus = claimStatus;
+        this.description = description;
+        this.status = status;
+        this.claimant = claimant;
     }
 
     public long getClaimId() {
@@ -45,20 +53,12 @@ public class Claim {
         this.claimId = claimId;
     }
 
-    public String getPolicyName() {
-        return policyName;
+    public Policy getPolicy() {
+        return policy;
     }
 
-    public void setPolicyName(String policyName) {
-        this.policyName = policyName;
-    }
-
-    public String getClaimantName() {
-        return claimantName;
-    }
-
-    public void setClaimantName(String claimantName) {
-        this.claimantName = claimantName;
+    public void setPolicy(Policy policy) {
+        this.policy = policy;
     }
 
     public LocalDate getClaimDate() {
@@ -69,19 +69,35 @@ public class Claim {
         this.claimDate = claimDate;
     }
 
-    public String getClaimAmount() {
+    public BigDecimal getClaimAmount() {
         return claimAmount;
     }
 
-    public void setClaimAmount(String claimAmount) {
+    public void setClaimAmount(BigDecimal claimAmount) {
         this.claimAmount = claimAmount;
     }
 
-    public String getClaimStatus() {
-        return claimStatus;
+    public String getDescription() {
+        return description;
     }
 
-    public void setClaimStatus(String claimStatus) {
-        this.claimStatus = claimStatus;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ClaimStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ClaimStatus status) {
+        this.status = status;
+    }
+
+    public Claimant getClaimant() {
+        return claimant;
+    }
+
+    public void setClaimant(Claimant claimant) {
+        this.claimant = claimant;
     }
 }

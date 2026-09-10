@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fdmgroup.insurance_claim.entity.Claimant;
@@ -15,27 +16,32 @@ import com.fdmgroup.insurance_claim.service.ClaimantService;
 
 import jakarta.validation.Valid;
 
-@RestController 
+@RestController
+@RequestMapping("/claimants")
 public class ClaimantController {
-    private ClaimantService claimantService;
+    private final ClaimantService claimantService;
 
-    @PostMapping("/claimants")
+    public ClaimantController(ClaimantService claimantService) {
+        this.claimantService = claimantService;
+    }
+
+    @PostMapping
     public Claimant saveClaimant(@Valid @RequestBody Claimant claimant) {
         return claimantService.saveClaimant(claimant);
     }
 
-    @GetMapping("/claimants")
+    @GetMapping
     public List<Claimant> fetchClaimantList() {
         return claimantService.fetchClaimantList();
     }
 
-    @PutMapping("/claimants/{id}")
-    public Claimant updateClaimant(@RequestBody Claimant claimant, @PathVariable Long claimantId) {
+    @PutMapping("/{id}")
+    public Claimant updateClaimant(@RequestBody Claimant claimant, @PathVariable("id") Long claimantId) {
         return claimantService.updateClaimant(claimant, claimantId);
     }
 
-    @DeleteMapping("claimants/{id}")
-    public void deleteClaimant(@PathVariable Long claimantId) {
+    @DeleteMapping("/{id}")
+    public void deleteClaimant(@PathVariable("id") Long claimantId) {
         claimantService.deleteClaimant(claimantId);
     }
 }

@@ -1,0 +1,21 @@
+#claim-submit-view {
+    min-height: 70vh;
+    padding: 2rem 1rem 4rem;
+}
+
+#claim-submit-panel {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+#claim-submit-panel form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.claim-submit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}

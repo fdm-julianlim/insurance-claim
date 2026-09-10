@@ -2,12 +2,19 @@ package com.fdmgroup.insurance_claim.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.fdmgroup.insurance_claim.entity.Claimant;
 import com.fdmgroup.insurance_claim.repository.ClaimantRepository;
 
+@Service
 public class ClaimantServiceImpl implements ClaimantService {
     
     private ClaimantRepository claimantRepository;
+
+    public ClaimantServiceImpl(ClaimantRepository claimantRepository) {
+        this.claimantRepository = claimantRepository;
+    }
 
     @Override
     public Claimant saveClaimant(Claimant claimant) {

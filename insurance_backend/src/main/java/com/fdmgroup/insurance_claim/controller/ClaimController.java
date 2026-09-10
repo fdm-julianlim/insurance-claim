@@ -2,8 +2,12 @@ package com.fdmgroup.insurance_claim.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
+import com.fdmgroup.insurance_claim.dto.ClaimResponse;
+import com.fdmgroup.insurance_claim.dto.SubmitClaimRequest;
 import com.fdmgroup.insurance_claim.entity.Claim;
 import com.fdmgroup.insurance_claim.service.ClaimService;
 
@@ -18,7 +22,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController 
 public class ClaimController {
-    private ClaimService claimService;
+    private final ClaimService claimService;
+
+    public ClaimController(ClaimService claimService) {
+        this.claimService = claimService;
+    }
 
     @PostMapping("/claims")
     private Claim saveClaim(@Valid @RequestBody Claim claim) {
@@ -28,6 +36,18 @@ public class ClaimController {
     @GetMapping("/claims")
     public List<Claim> fetchClaimList() {
         return claimService.fetchClaimList();
+    }
+
+    @GetMapping("/claimants/{claimantId}/claims")
+    public List<ClaimResponse> fetchClaimsForClaimant(@PathVariable Long claimantId) {
+        return claimService.fetchClaimsForClaimant(claimantId);
+    }
+
+    @PostMapping("/claimants/{claimantId}/claims")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ClaimResponse submitClaim(@PathVariable Long claimantId,
+            @Valid @RequestBody SubmitClaimRequest request) {
+        return claimService.submitClaim(claimantId, request);
     }
 
     @PutMapping("/claims/{id}")

@@ -2,11 +2,11 @@ package com.fdmgroup.insurance_claim.entity;
 
 import java.util.List;
 
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -20,19 +20,23 @@ public class Claimant {
     private String claimantName;
     private int claimantAge;
     private String claimantGender;
-
-    @ElementCollection
+    
     @OneToMany (mappedBy = "claimant")
     private List<Claim> claims;
+
+    @ManyToMany
+    private List<Policy> policies;
     
     public Claimant() {
     }
 
-    public Claimant(String claimantName, int claimantAge, String claimantGender, List<Claim> claims) {
+    public Claimant(String claimantName, int claimantAge, String claimantGender, List<Claim> claims,
+            List<Policy> policies) {
         this.claimantName = claimantName;
         this.claimantAge = claimantAge;
         this.claimantGender = claimantGender;
         this.claims = claims;
+        this.policies = policies;
     }
 
     public long getId() {
@@ -73,5 +77,13 @@ public class Claimant {
 
     public void setClaims(List<Claim> claims) {
         this.claims = claims;
+    }
+
+    public List<Policy> getPolicies() {
+        return policies;
+    }
+
+    public void setPolicies(List<Policy> policies) {
+        this.policies = policies;
     }
 }

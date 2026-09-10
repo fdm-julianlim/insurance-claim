@@ -1,51 +1,206 @@
-ul {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+:root {
+    --coverage-ink: #17251f;
+    --coverage-muted: #62716a;
+    --coverage-line: #dbe5df;
+    --coverage-accent: #1f6f54;
+    --coverage-wash: #f2f6f1;
+}
+
+#coverage-page {
+    min-height: calc(100vh - 76px);
+    padding: 0 3rem 4rem;
+    color: var(--coverage-ink);
+    background: radial-gradient(circle at 85% 12%, #e6f1c9 0, transparent 28rem),
+        linear-gradient(135deg, #f7faf6 0%, #eef4ed 100%);
 }
 
 #viewclaims-greeting {
-    display: flex;
-    min-height: 100px;
-    justify-content: center;
-    align-items: center;
+    max-width: 1180px;
+    min-height: 190px;
+    margin: 0 auto;
+    align-items: flex-end;
+    padding: 2.5rem 0 2rem;
 }
 
-#viewclaims-mainview {
-    display: flex;
-    height: 70vh;
+#viewclaims-greeting h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
 }
 
-#viewclaims-modallist, #viewclaims-description {
+.coverage-eyebrow,
+.coverage-section-label {
+    margin: 0 0 0.5rem;
+    color: var(--coverage-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.coverage-intro {
+    margin: 0.65rem 0 0;
+    color: var(--coverage-muted);
+    font-size: 1rem;
+}
+
+#viewclaims-modallist,
+#viewclaims-description {
+    box-sizing: border-box;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border: 1px solid var(--coverage-line);
+    border-radius: 8px;
+    background: rgb(255 255 255 / 88%);
+    box-shadow: 0 18px 45px rgb(38 65 48 / 8%);
 }
 
 #viewclaims-modallist {
+    display: flex;
     flex-direction: column;
+    align-items: stretch;
+    padding: 1.5rem;
 }
 
-#viewclaims-description {
+.policy-list {
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 50px;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .insurance-modal {
-    background-color: green;
-    border-style: none;
-    min-width: 500px;
-    margin: 20px;
-    border-radius: 20px;
-    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--coverage-line);
+    border-radius: 6px;
+    background: var(--coverage-wash);
+    color: var(--coverage-ink);
+    text-align: left;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
 
-.insurance-modal:hover {
-    background-color: darkolivegreen;
+.insurance-modal h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
-.insurance-modal:active {
-    background-color: purple;
+.insurance-modal:hover,
+.insurance-modal:focus-visible {
+    border-color: var(--coverage-accent);
+    background: #e8f2e8;
+    color: var(--coverage-ink);
+    transform: translateX(3px);
+}
+
+.insurance-modal.active {
+    border-color: var(--coverage-accent);
+    background: var(--coverage-accent);
+    color: #ffffff;
+}
+
+#viewclaims-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: clamp(2rem, 5vw, 4rem);
+}
+
+.policy-detail-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--coverage-line);
+}
+
+.policy-detail-heading h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.coverage-status {
+    flex: 0 0 auto;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.is-covered {
+    background: #d9f1df;
+    color: #185c35;
+}
+
+.is-not-covered {
+    background: #fde7e7;
+    color: #b42318;
+}
+
+.policy-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding-top: 1.75rem;
+}
+
+.policy-details:has(.policy-not-covered-message) {
+    display: block;
+}
+
+.policy-details div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.policy-details span {
+    color: var(--coverage-muted);
+    font-size: 0.8rem;
+}
+
+.policy-details strong {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.policy-not-covered-message {
+    margin: 0;
+    padding-top: 1.75rem;
+    color: #b42318;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+    .policy-not-covered-message {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 760px) {
+    #coverage-page {
+        padding: 0 1rem 3rem;
+    }
+
+    #viewclaims-mainview {
+        grid-template-columns: 1fr;
+    }
+
+    #viewclaims-greeting {
+        min-height: 160px;
+    }
+
+    .policy-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .policy-detail-heading {
+        flex-direction: column;
+    }
 }
