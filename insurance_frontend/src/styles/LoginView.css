@@ -11,8 +11,6 @@
     place-items: center;
     padding: 2rem 1rem;
     color: var(--login-ink);
-    background: radial-gradient(circle at 85% 12%, #e6f1c9 0, transparent 28rem),
-        linear-gradient(135deg, #f7faf6 0%, #eef4ed 100%);
 }
 
 #login-panel {
@@ -34,10 +32,10 @@
     text-transform: uppercase;
 }
 
-#login-panel h1 {
-    margin: 0;
-    font-size: clamp(2rem, 7vw, 3.25rem);
-    font-weight: 700;
+.login-logo {
+    display: block;
+    width: min(200px, 100%);
+    height: auto;
 }
 
 .login-intro {

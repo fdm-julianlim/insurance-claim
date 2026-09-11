@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
 
 import { login } from "../api/auth.js"
+import fdm_logo from "../images/fdm_logo.png"
 import "../styles/LoginView.css"
 
 const LoginView = () => {
@@ -43,7 +44,7 @@ const LoginView = () => {
             <Container>
                 <div id="login-panel">
                     <p className="login-eyebrow">Insurance portal</p>
-                    <h1>Welcome back.</h1>
+                    <img className="login-logo" src={fdm_logo} alt="FDM" />
                     <p className="login-intro">Sign in to review your protection and manage claims.</p>
 
                     {error && <Alert variant="danger">{error}</Alert>}
